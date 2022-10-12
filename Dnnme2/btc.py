@@ -1,12 +1,16 @@
+#!/usr/bin/env python
+import os
 
-	
 import telebot
 from telebot import types
 import time
 import random
+from dotenv import load_dotenv
 
-ID = '5682119639'
-bot = telebot.TeleBot("5707705455:AAHlsxL6qKp8NyZtFMtBCwM69a660auRLoY")
+load_dotenv()
+
+ID = os.getenv('ID')
+bot = telebot.TeleBot(os.getenv('TOKEN'))
 bot.send_message(ID, '!BOT STARTED!') 
 print("Бот запущен!") 
 

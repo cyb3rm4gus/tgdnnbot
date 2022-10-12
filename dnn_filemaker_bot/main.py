@@ -1,8 +1,13 @@
 #!/usr/bin/env python
 
 import logging
+import os
+
 from telegram import Update, InputMediaDocument, Document
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
+from dotenv import load_dotenv
+
+load_dotenv()
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -23,7 +28,7 @@ async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token('5707705455:AAHlsxL6qKp8NyZtFMtBCwM69a660auRLoY').build()
+    application = ApplicationBuilder().token(os.getenv('TOKEN')).build()
 
     start_handler = CommandHandler('start', start)
     unknown_handler = MessageHandler(filters.COMMAND, unknown)
